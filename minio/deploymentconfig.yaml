@@ -29,8 +29,7 @@ spec:
     spec:
       serviceAccountName: minio
       containers:
-      - image: " "
-        imagePullPolicy: Always
+      - imagePullPolicy: Always
         name: minio
         ports:
         - containerPort: 9000
