@@ -14,5 +14,4 @@ spec:
     namespace: labdroid
     name: minio-data-claim
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: slow
   volumeMode: Filesystem
