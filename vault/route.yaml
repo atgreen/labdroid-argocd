@@ -1,14 +1,16 @@
 ---
 apiVersion: route.openshift.io/v1
-kind: Route
-id: vault-http
-metadata:
-  annotations:
-    description: Route for application's http service.
-  labels:
-    app: vault
-  name: vault
-spec:
-  host: ""
-  to:
+kind: Route                                  
+metadata:                                    
+  annotations:                               
+    description: Route for application's http
+  labels:        
+    app: vault   
+  name: vault    
+spec:            
+  host: ""       
+  to:            
+    kind: Service
     name: vault
+    weight: 100
+status: { }
