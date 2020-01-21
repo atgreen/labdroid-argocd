@@ -13,5 +13,6 @@ spec:
     kind: Service
     name: vault
     weight: 100
-    
-
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: None
