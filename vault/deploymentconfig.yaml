@@ -1,0 +1,69 @@
+---
+apiVersion: v1
+kind: DeploymentConfig
+apiVersion: v1
+metadata:
+  labels:
+    app: vault
+  name: vault
+spec:
+  replicas: 1
+  selector:
+    app: vault
+    deploymentconfig: vault
+  strategy:
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: vault
+        deploymentconfig: vault
+    spec:
+      serviceAccountName: vault
+      containers:
+      - image: " "
+        imagePullPolicy: Always
+        name: vault
+        ports:
+        - containerPort: 8200
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        volumeMounts:
+        - name: vault-data
+          mountPath: /opt/vault
+        - name: vault-config
+          mountPath: /etc/vault.hcl
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: vault-data
+        persistentVolumeClaim:
+          claimName: vault-data
+      - name: vault-config
+        configMap:
+          name: vault-config
+          items:
+            - key: vault.hcl
+              path: vault.hcl
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - vault
+      from:
+        kind: ImageStreamTag
+        name: vault:latest
+    type: ImageChange

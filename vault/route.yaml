@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Route
+id: vault-http
+metadata:
+  annotations:
+    description: Route for application's http service.
+  labels:
+    app: vault
+  name: vault
+spec:
+  host: ""
+  to:
+    name: vault
