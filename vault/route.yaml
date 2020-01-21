@@ -8,7 +8,6 @@ metadata:
     app: vault   
   name: vault    
 spec:            
-  host: ""       
   to:            
     kind: Service
     name: vault
