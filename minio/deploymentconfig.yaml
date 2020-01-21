@@ -5,7 +5,7 @@ metadata:
   labels:
     app: minio
     app.kubernetes.io/instance: minio
-  name: vault
+  name: minio
 spec:
   replicas: 1
   selector:
