@@ -1,0 +1,21 @@
+---
+apiVersion: route.openshift.io/v1
+kind: Route                                  
+metadata:                                    
+  annotations:                               
+    description: Route for application's http
+  labels:        
+    app: minio   
+  name: minio    
+spec:
+  host: minio-labdroid.apps.ocp.labdroid.net
+  to:            
+    kind: Service
+    name: minio
+    weight: 100
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: None
+status:
+  ingress:
+    - conditions:  

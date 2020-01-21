@@ -1,0 +1,19 @@
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  labels:
+    app: minio
+    app.kubernetes.io/instance: minio
+  name: minio
+spec:
+  tags:
+  - name: latest
+    from:
+      kind: DockerImage
+      name: docker.io/atgreen/labdroid-minio:latest
+    importPolicy: {}
+    annotations:
+      description: Minio Private Cloud Storage (https://minio.io/)
+      tags: minio
+      version: latest
