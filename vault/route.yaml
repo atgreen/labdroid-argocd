@@ -13,4 +13,5 @@ spec:
     kind: Service
     name: vault
     weight: 100
-status: { }
+status:
+  ingress:
