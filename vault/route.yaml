@@ -17,3 +17,5 @@ spec:
     termination: edge
     insecureEdgeTerminationPolicy: None
 status:
+  ingress:
+    - conditions:  
