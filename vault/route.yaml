@@ -7,6 +7,7 @@ metadata:
     description: Route for application's http service.
   labels:
     app: vault
+    argocd.argoproj.io/sync-options: Validate=false    
   name: vault
 spec:
   host: ""
