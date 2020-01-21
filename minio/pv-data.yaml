@@ -1,0 +1,18 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-labdroid-minio-data
+spec:
+  capacity:
+    storage: 100Gi
+  nfs:
+    server: 192.168.1.127
+    path: /volume1/ocp.labdroid/pv-labdroid-minio-data
+  accessModes:
+    - ReadWriteOnce
+  claimRef:
+    namespace: labdroid
+    name: labdroid-minio-data
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: slow
+  volumeMode: Filesystem
