@@ -37,9 +37,9 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         volumeMounts:
-        - name: minio-data
+        - name: minio-data-volume
           mountPath: /opt/minio/data
-        - name: minio-config
+        - name: minio-config-volume
           mountPath: /etc/minio/conf
         readinessProbe:
             httpGet:
@@ -66,12 +66,12 @@ spec:
       securityContext: {}
       terminationGracePeriodSeconds: 30
       volumes:
-      - name: minio-data
+      - name: minio-data-volume
         persistentVolumeClaim:
-          claimName: labdroid-minio-data
-      - name: minio-config
+          claimName: minio-data-claim
+      - name: minio-config-volume
         persistentVolumeClaim:
-          claimName: labdroid-minio-config
+          claimName: minio-config-claim
   test: false
   triggers:
   - type: ConfigChange

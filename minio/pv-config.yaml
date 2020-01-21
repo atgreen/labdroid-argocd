@@ -12,7 +12,7 @@ spec:
     - ReadWriteOnce
   claimRef:
     namespace: labdroid
-    name: labdroid-minio-config
+    name: minio-config-claim
   persistentVolumeReclaimPolicy: Retain
   storageClassName: slow
   volumeMode: Filesystem
