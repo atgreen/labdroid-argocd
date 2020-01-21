@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: minio-config
+  name: labdroid-minio-config
   labels:
     app: minio
 spec:
