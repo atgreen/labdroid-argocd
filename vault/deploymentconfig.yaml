@@ -1,7 +1,6 @@
 ---
-apiVersion: deploymentconfig.openshift.io/v1
+apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
-apiVersion: v1
 metadata:
   labels:
     app: vault
