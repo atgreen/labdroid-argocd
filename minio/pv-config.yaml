@@ -7,7 +7,7 @@ spec:
     storage: 1Gi
   nfs:
     server: 192.168.1.127
-    path: /volume1/ocp.labdroid/pv-labdroid-minio-config
+    path: /volume1/ocp.labdroid-pv/pv-labdroid-minio-config
   accessModes:
     - ReadWriteOnce
   claimRef:
