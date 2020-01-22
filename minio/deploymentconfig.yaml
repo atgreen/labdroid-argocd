@@ -41,12 +41,9 @@ spec:
           mountPath: /opt/minio/data
         - name: minio-config-volume
           mountPath: /etc/minio/conf
-        env:
-        - name: VAULT_MINIO_READ_ACCESS_TOKEN
-          valueFrom:
-            configMapKeyRef:
-              name: vault-minio-token
-              key: VAULT_MINIO_READ_ACCESS_TOKEN
+        envFrom:
+        - secretRef:
+            name: vault-minio-token
         readinessProbe:
             httpGet:
               path: /
