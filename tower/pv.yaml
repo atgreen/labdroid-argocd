@@ -1,0 +1,17 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: postgresql
+spec:
+  capacity:
+    storage: 100Gi
+  nfs:
+    server: 192.168.1.127
+    path: /volume1/ocp.labdroid-pv/pv-labdroid-tower-postgresql
+  accessModes:
+    - ReadWriteOnce
+  claimRef:
+    namespace: labdroid
+    name: postgresql
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem

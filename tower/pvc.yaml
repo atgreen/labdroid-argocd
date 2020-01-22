@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgresql
+  labels:
+    app: tower
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeName: "postgresql"
+  resources:
+    requests:
+      storage: 100Gi
