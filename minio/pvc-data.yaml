@@ -8,7 +8,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  volumeName: "minio-data"
+  volumeName: "minio-data-volume"
   resources:
     requests:
       storage: 100Gi

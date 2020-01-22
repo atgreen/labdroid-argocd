@@ -1,7 +1,7 @@
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: pv-labdroid-minio-config
+  name: minio-config-volume
 spec:
   capacity:
     storage: 1Gi
