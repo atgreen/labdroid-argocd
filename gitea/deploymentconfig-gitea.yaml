@@ -28,8 +28,7 @@ spec:
     spec:
       serviceAccountName: gitea
       containers:
-      - image: " "
-        imagePullPolicy: Always
+      - imagePullPolicy: Always
         name: gitea
         ports:
         - containerPort: 3000
