@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Route
+id: gitea-http
+metadata:
+  annotations:
+    description: Route for application's http service.
+  labels:
+    app: gitea
+  name: gitea
+spec:
+  host: ${HOSTNAME}
+  to:
+    name: gitea

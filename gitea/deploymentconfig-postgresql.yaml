@@ -1,0 +1,75 @@
+---
+apiVersion: v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    description: Defines how to deploy the database
+  name: gitea-postgresql
+  labels:
+    app: gitea
+spec:
+  replicas: 1
+  selector:
+    name: gitea-postgresql
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        name: gitea-postgresql
+      name: gitea-postgresql
+    spec:
+      serviceAccountName: gitea
+      containers:
+      - env:
+        - name: GITEA_POSTGRSQL_USER
+          value: ${DATABASE_USER}
+        - name: GITEA_POSTGRSQL_PASSWORD
+          value: ${DATABASE_PASSWORD}
+        - name: GITEA_POSTGRSQL_DATABASE
+          value: ${DATABASE_NAME}
+        - name: GITEA_POSTGRSQL_MAX_CONNECTIONS
+          value: ${DATABASE_MAX_CONNECTIONS}
+        - name: GITEA_POSTGRSQL_SHARED_BUFFERS
+          value: ${DATABASE_SHARED_BUFFERS}
+        - name: GITEA_POSTGRSQL_ADMIN_PASSWORD
+          value: ${DATABASE_ADMIN_PASSWORD}
+        image: ' '
+        livenessProbe:
+          initialDelaySeconds: 30
+          tcpSocket:
+            port: 5432
+          timeoutSeconds: 1
+        name: postgresql
+        ports:
+        - containerPort: 5432
+        readinessProbe:
+          exec:
+            command:
+            - /bin/sh
+            - -i
+            - -c
+            - psql -h 127.0.0.1 -U ${GITEA_POSTGRSQL_USER} -q -d ${GITEA_POSTGRSQL_DATABASE} -c 'SELECT 1'
+          initialDelaySeconds: 5
+          timeoutSeconds: 1
+        resources:
+          limits:
+            memory: 512Mi
+        volumeMounts:
+        - mountPath: /var/lib/pgsql/data
+          name: gitea-postgres-data
+      volumes:
+      - name: gitea-postgres-data
+        persistentVolumeClaim:
+          claimName: gitea-postgres-data-claim
+  triggers:
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - postgresql
+      from:
+        kind: ImageStreamTag
+        name: postgresql:9.5
+        namespace: openshift
+    type: ImageChange
+  - type: ConfigChange

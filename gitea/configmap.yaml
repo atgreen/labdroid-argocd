@@ -1,0 +1,38 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: labdroid-gogs-config
+  labels:
+    app: gogs
+data:
+  app.ini: |
+    RUN_MODE = prod
+    RUN_USER = gogs
+
+    [database]
+    DB_TYPE  = postgres
+    HOST     = gogs-postgresql:5432
+    NAME     = ${DATABASE_NAME}
+    USER     = ${DATABASE_USER}
+    PASSWD   = ${DATABASE_PASSWORD}
+
+    [repository]
+    ROOT = /opt/gogs/data/repositories
+
+    [server]
+    ROOT_URL=http://${HOSTNAME}
+    SSH_DOMAIN=${HOSTNAME}
+    DISABLE_SSH = true
+
+    [security]
+    INSTALL_LOCK = ${INSTALL_LOCK}
+    SECRET_KEY = ${SECRET_KEY}
+      
+    [service]
+    ENABLE_CAPTCHA = false
+    DISABLE_REGISTRATION = true
+
+    [webhook]
+    SKIP_TLS_VERIFY = ${SKIP_TLS_VERIFY}
+
