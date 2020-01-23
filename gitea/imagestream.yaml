@@ -10,7 +10,7 @@ spec:
   - name: "latest"
     from:
       kind: DockerImage
-      name: docker.io/atgreen/gitea:latest
+      name: quay.io/atgreen/gitea:latest
     importPolicy: {}
     annotations:
       description: The Gitea git server docker image
