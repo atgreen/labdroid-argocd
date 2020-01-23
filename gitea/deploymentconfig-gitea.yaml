@@ -68,7 +68,7 @@ spec:
       volumes:
       - name: labdroid-gitea-data
         persistentVolumeClaim:
-          claimName: labdroid-gitea-data
+          claimName: gitea-data-claim
       - name: labdroid-gitea-config
         configMap:
           name: labdroid-gitea-config
