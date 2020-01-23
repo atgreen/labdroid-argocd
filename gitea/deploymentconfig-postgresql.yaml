@@ -22,17 +22,17 @@ spec:
       serviceAccountName: gitea
       containers:
       - env:
-        - name: GITEA_POSTGRSQL_USER
+        - name: POSTGRESQL_USER
           value: ${DATABASE_USER}
-        - name: GITEA_POSTGRSQL_PASSWORD
+        - name: POSTGRESQL_PASSWORD
           value: ${DATABASE_PASSWORD}
-        - name: GITEA_POSTGRSQL_DATABASE
+        - name: POSTGRESQL_DATABASE
           value: ${DATABASE_NAME}
-        - name: GITEA_POSTGRSQL_MAX_CONNECTIONS
+        - name: POSTGRESQL_MAX_CONNECTIONS
           value: ${DATABASE_MAX_CONNECTIONS}
-        - name: GITEA_POSTGRSQL_SHARED_BUFFERS
+        - name: POSTGRESQL_SHARED_BUFFERS
           value: ${DATABASE_SHARED_BUFFERS}
-        - name: GITEA_POSTGRSQL_ADMIN_PASSWORD
+        - name: POSTGRESQL_ADMIN_PASSWORD
           value: ${DATABASE_ADMIN_PASSWORD}
         image: registry.access.redhat.com/rhscl/postgresql-10-rhel7
         livenessProbe:
@@ -49,7 +49,7 @@ spec:
             - /bin/sh
             - -i
             - -c
-            - psql -h 127.0.0.1 -U ${GITEA_POSTGRSQL_USER} -q -d ${GITEA_POSTGRSQL_DATABASE} -c 'SELECT 1'
+            - psql -h 127.0.0.1 -U ${POSTGRESQL_USER} -q -d ${POSTGRESQL_DATABASE} -c 'SELECT 1'
           initialDelaySeconds: 5
           timeoutSeconds: 1
         resources:
