@@ -70,8 +70,8 @@ spec:
         persistentVolumeClaim:
           claimName: gitea-data-claim
       - name: labdroid-gitea-config
-        configMap:
-          name: labdroid-gitea-config
+        secret:
+          name: gitea-app-ini-secret
           items:
             - key: app.ini
               path: app.ini
