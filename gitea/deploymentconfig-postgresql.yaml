@@ -61,6 +61,6 @@ spec:
       volumes:
       - name: gitea-postgres-data
         persistentVolumeClaim:
-          claimName: gitea-postgres-data-claim
+          claimName: gitea-postgresql-data-claim
   triggers:
   - type: ConfigChange
