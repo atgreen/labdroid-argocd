@@ -34,7 +34,7 @@ spec:
           value: ${DATABASE_SHARED_BUFFERS}
         - name: GITEA_POSTGRSQL_ADMIN_PASSWORD
           value: ${DATABASE_ADMIN_PASSWORD}
-        image: ' '
+        image: registry.access.redhat.com/rhscl/postgresql-10-rhel7
         livenessProbe:
           initialDelaySeconds: 30
           tcpSocket:
@@ -63,13 +63,4 @@ spec:
         persistentVolumeClaim:
           claimName: gitea-postgres-data-claim
   triggers:
-  - imageChangeParams:
-      automatic: true
-      containerNames:
-      - postgresql
-      from:
-        kind: ImageStreamTag
-        name: postgresql:9.5
-        namespace: openshift
-    type: ImageChange
   - type: ConfigChange
