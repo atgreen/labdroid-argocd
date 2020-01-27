@@ -1,0 +1,17 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: vault-data
+spec:
+  capacity:
+    storage: 10Gi
+  nfs:
+    server: 192.168.1.127
+    path: /volume1/ocp.labdroid-pv/pv-labdroid-vault-data
+  accessModes:
+    - ReadWriteOnce
+  claimRef:
+    namespace: labdroid
+    name: vault-data
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
